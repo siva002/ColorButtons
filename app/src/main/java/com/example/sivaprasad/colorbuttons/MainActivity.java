@@ -1,5 +1,6 @@
 package com.example.sivaprasad.colorbuttons;
 
+
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     private Button button_red ;
     private Button button_blue ;
@@ -39,24 +40,10 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
-        button_blue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ONCLICK","button clicked");
-            }
-        });
-        button_green.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ONCLICK","button clicked");
-            }
-        });
-        button_purple.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ONCLICK","button clicked");
-            }
-        });
+        button_blue.setOnClickListener( new Listener());
+
+        button_green.setOnClickListener(this);
+        button_purple.setOnClickListener(this);
 
     }
 
@@ -81,5 +68,45 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.red :
+                Log.d("ONCLICK", "Red Button Pressed");
+                v.setBackgroundColor(Color.RED);
+                break;
+            case R.id.blue :
+                Log.d("ONCLICK","Blue Button Pressed");
+                v.setBackgroundColor(Color.BLUE);
+                break;
+            case R.id.green :
+                Log.d("ONCLICK","Green Button Pressed");
+                v.setBackgroundColor(Color.GREEN);
+                break;
+            case R.id.purple :
+                Log.d("ONCLICK","Purple Button Pressed");
+                v.setBackgroundColor(Color.YELLOW);
+        }
+
+    }
+
+    public void clickRed(View view){
+        Log.d("ONCLICK","blue button clicked");
+        view.setBackgroundColor(Color.BLUE);
+    }
+    class Listener implements View.OnClickListener
+    {
+
+        @Override
+        public void onClick(View v) {
+            if ( v.getId() == R.id.blue){
+                Log.d("ONCLICK","blue button clicked");
+                v.setBackgroundColor(Color.BLUE);
+            }
+        }
+
     }
 }
